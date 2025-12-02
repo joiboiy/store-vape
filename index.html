@@ -1,0 +1,311 @@
+ <!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JOIY VAPE - Toko Vape Dewasa (21+)</title>
+<style>
+  :root{
+    --bg1:#051937;
+    --bg2:#2a2b7a;
+    --accent1:#ff5cab;
+    --accent2:#00f5b9;
+    --glass: rgba(255,255,255,0.06);
+    --card: rgba(255,255,255,0.06);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    background: radial-gradient(ellipse at 10% 10%, rgba(0,0,0,0.4), transparent 20%),
+                linear-gradient(135deg,var(--bg1), var(--bg2) 60%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Neon confetti header */
+  header{
+    padding:2rem 1.25rem;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:.75rem;
+    background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    padding:.5rem 1rem;
+    border-radius:999px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 40px rgba(255,92,181,0.08);
+    backdrop-filter: blur(6px);
+  }
+  .logo-dot{
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent1),var(--accent2));
+    box-shadow: 0 0 18px rgba(255,92,181,0.4);
+  }
+  h1{
+    font-size:clamp(1.4rem,3.2vw,2.4rem);
+    margin:.6rem 0 0;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+    background:linear-gradient(90deg,#fff, #ffd1f4);
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+  p.lead{opacity:.9;margin:.3rem 0 0;font-weight:600}
+
+  /* hero area */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:1.5rem;
+    align-items:center;
+    padding:1.5rem;
+    max-width:1200px;margin:1.2rem auto;
+  }
+  .hero-card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;
+    padding:1.25rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position:relative;
+    overflow:visible;
+  }
+  .promo{
+    display:flex;flex-direction:column;gap:.75rem;
+  }
+  .badges{display:flex;gap:.5rem;flex-wrap:wrap}
+  .badge{
+    font-weight:700;padding:.35rem .7rem;border-radius:999px;font-size:.85rem;
+    background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+  }
+
+  .cta-row{display:flex;gap:.75rem;margin-top:1.1rem;align-items:center}
+  .btn{
+    padding:.9rem 1.1rem;border-radius:12px;border:0;cursor:pointer;font-weight:800;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .btn-primary{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#07121a;
+  }
+  .btn-outline{
+    background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;
+  }
+
+  /* image column */
+  .showcase{
+    display:flex;flex-direction:column;gap:.6rem;align-items:center;
+  }
+  .big-image{
+    width:100%;max-width:380px;border-radius:14px;overflow:hidden;
+    border:2px solid rgba(255,255,255,0.04);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,255,200,0.04) inset;
+    transform:translateY(0);
+    transition:transform .35s ease;
+  }
+  .big-image img{display:block;width:100%;height:auto}
+
+  .thumbnails{display:flex;gap:.6rem; margin-top:.6rem;}
+  .thumb{width:94px;height:94px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* features */
+  .features{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+    padding:1rem 1.25rem;max-width:1200px;margin:0 auto 2.2rem;
+  }
+  .feature{
+    background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02));
+    padding:1rem;border-radius:12px;text-align:center;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .feature h3{margin:.4rem 0;font-size:1.05rem}
+  .sparkle{
+    position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;
+    background:conic-gradient(rgba(255,255,255,0.03), transparent 30%);
+    filter: blur(18px);opacity:.9;transform:rotate(8deg)
+  }
+
+  /* info strip */
+  .info-strip{display:flex;justify-content:space-between;align-items:center;padding:1rem;max-width:1200px;margin:0 auto 3rem;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)}
+
+  footer{padding:1.2rem;text-align:center;color:#ddd;font-size:.9rem;opacity:.95}
+
+  /* age-gate modal */
+  .age-modal{
+    position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.85), rgba(0,0,0,0.7));
+    display:flex;align-items:center;justify-content:center;z-index:9999;padding:1.5rem;
+  }
+  .age-box{
+    background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    padding:2rem;border-radius:16px;width:100%;max-width:520px;text-align:center;border:1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  }
+  .age-box h2{margin:0 0 .25rem}
+  .age-box p{opacity:.9;margin:.4rem 0 1rem}
+  .age-row{display:flex;gap:.6rem;justify-content:center;margin-top:1rem}
+  .small{font-size:.85rem;opacity:.85;margin-top:.6rem}
+
+  /* animations */
+  @keyframes float { from{transform:translateY(0)} 50%{transform:translateY(-8px)} to{transform:translateY(0)} }
+  .big-image{animation:float 4s ease-in-out infinite}
+  .badge{animation:pop .9s ease both}
+  @keyframes pop { from{transform:scale(.96);opacity:0} to{transform:scale(1);opacity:1} }
+
+  /* responsive */
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr; padding:0 1rem}
+    .features{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:560px){
+    .features{grid-template-columns:1fr}
+    .thumb{width:76px;height:76px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" aria-hidden="true">
+    <div class="logo-dot"></div>
+    <strong>NEON VAPE • STORE</strong>
+  </div>
+  <h1>Neon Vibes, Adult Vapers Only</h1>
+  <p class="lead">Temukan liquid premium, salt nic, & device — kunjungi toko kami untuk pengalaman rasa eksklusif (21+ / usia legal).</p>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-card">
+      <div class="promo">
+        <div class="badges">
+          <div class="badge">21+ Only • ID Required</div>
+          <div class="badge">Safety First</div>
+          <div class="badge">Loyalty & Event Dewasa</div>
+        </div>
+        <h2 style="margin-top:.8rem">Event Tasting • DJ Set • Promo Launch</h2>
+        <p style="opacity:.92">Kunjungi toko kami untuk <strong>tasting rasa</strong> eksklusif, diskon launch, dan program loyalitas — untuk pelanggan dewasa.</p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="scrollToSection('#visit')">Kunjungi Toko</button>
+          <button class="btn btn-outline" onclick="scrollToSection('#products')">Lihat Koleksi</button>
+        </div>
+
+        <div style="margin-top:1rem;font-size:.92rem;opacity:.9">
+          <strong>Peringatan:</strong> Produk ini mengandung nikotin, zat yang sangat adiktif. Tidak untuk pengguna di bawah usia legal. Jika Anda ingin berhenti merokok, cari dukungan resmi.
+        </div>
+      </div>
+
+      <div style="height:8px"></div>
+      <div class="sparkle" aria-hidden="true"></div>
+    </div>
+
+    <aside class="showcase">
+      <div class="big-image" id="heroImage">
+        <!-- Ganti path gambar sesuai lokasi file Anda -->
+        <img src="28a182ab5df146ec7f0f0d78e42ecada.jpg" alt="Koleksi e-liquid - hanya untuk dewasa">
+      </div>
+
+      <div class="thumbnails">
+        <div class="thumb"><img src="/840511e50d7c5452a1f04fbf2709b7a9.jpg" alt="Botol e-liquid warna-warni"></div>
+        <div class="thumb"><img src="/7554f6d265498f2442f41ab80a316f97.jpg" alt="Poster produk vape"></div>
+        <div class="thumb"><img src="/28a182ab5df146ec7f0f0d78e42ecada.jpg" alt="Varian rasa e-liquid"></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="features" id="products">
+    <div class="feature">
+      <h3>Salt Nic & Freebase</h3>
+      <p>Varian lengkap: salt-nic untuk pengalaman halus & freebase untuk cloud chasing. Staf siap jelaskan perbedaan untuk dewasa.</p>
+    </div>
+    <div class="feature">
+      <h3>Event & Tasting</h3>
+      <p>Weekly tasting sessions (21+). DJ vibes, snack, dan diskon bundle khusus peserta event.</p>
+    </div>
+    <div class="feature">
+      <h3>Loyalty & Trade-in</h3>
+      <p>Kumpulkan poin untuk setiap kunjungan. Tukarkan device lama dengan diskon pembelian baru (syarat & ketentuan berlaku).</p>
+    </div>
+  </section>
+
+  <section class="info-strip" id="visit">
+    <div>
+      <strong>Lokasi:</strong> Jl. Contoh No.12 • Jam buka: 12:00 - 22:00 (Setiap hari) • ID wajib.
+    </div>
+    <div style="text-align:right">
+      <button class="btn btn-primary" onclick="openMap()">Dapatkan Arah</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div style="max-width:1000px;margin:0 auto;padding:0 1rem">
+    <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem">
+      <span style="opacity:.9">Not for sale to minors • 21+ / usia legal</span> •
+      <a href="https://www.who.int/news-room/q-a-detail/tobacco" target="_blank" rel="noopener" style="color:#f8f8f8;text-decoration:underline">Info kesehatan & dukungan berhenti</a>
+    </div>
+    <div style="font-size:.88rem;opacity:.9">© <strong>NEON VAPE</strong> — Semua promosi ditujukan kepada pelanggan dewasa yang berusia legal.</div>
+  </div>
+</footer>
+
+<!-- Age gate modal -->
+<div class="age-modal" id="ageModal" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
+  <div class="age-box">
+    <h2 id="ageTitle">Konfirmasi Usia</h2>
+    <p>Halaman ini hanya untuk <strong>pelanggan dewasa</strong>. Pastikan Anda memenuhi usia legal di negara Anda. ID akan diminta saat berkunjung ke toko.</p>
+    <div style="display:flex;gap:.6rem;justify-content:center;margin-top:.8rem">
+      <button class="btn btn-outline" onclick="denyAge()">Saya Bukan Dewasa</button>
+      <button class="btn btn-primary" id="confirmAgeBtn">Saya 21+ / Usia Legal</button>
+    </div>
+    <div class="small">Jika Anda berusaha berhenti merokok atau vaping, mohon kunjungi sumber dukungan kesehatan.</div>
+  </div>
+</div>
+
+<script>
+  // Age gate logic (client-side only) — penggunaan nyata: sambungkan ke server/session untuk kepatuhan.
+  const ageModal = document.getElementById('ageModal');
+  const confirmBtn = document.getElementById('confirmAgeBtn');
+
+  confirmBtn.addEventListener('click', () => {
+    // simpan flag di sessionStorage agar modal tidak muncul lagi selama sesi
+    sessionStorage.setItem('isAdult', 'true');
+    ageModal.style.display = 'none';
+  });
+
+  function denyAge(){
+    // redirect keluar atau tampilkan pesan
+    ageModal.querySelector('.age-box').innerHTML = '<h2>Maaf</h2><p>Konten ini hanya untuk pelanggan dewasa. Anda akan dialihkan.</p>';
+    setTimeout(()=>{ window.location.href = 'about:blank'; }, 1600);
+  }
+
+  // Jika sudah konfirmasi di sesi ini, sembunyikan modal
+  if(sessionStorage.getItem('isAdult') === 'true'){
+    ageModal.style.display = 'none';
+  }
+
+  function scrollToSection(sel){
+    const el = document.querySelector(sel);
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  }
+
+  function openMap(){
+    // sesuaikan dengan lokasi Anda; ini contoh membuka Google Maps (user dapat mengganti)
+    window.open('https://www.google.com/maps/search/?api=1&query=neon+vape', '_blank');
+  }
+
+  // thumbnail click mengubah hero image
+  document.querySelectorAll('.thumb img').forEach(img=>{
+    img.addEventListener('click', ()=>{
+      document.getElementById('heroImage').querySelector('img').src = img.src;
+    });
+  });
+</script>
+</body>
+</html>
